@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Spirit - Discover Untold Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F5F1;
+        }
+
+        .img1st {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            border:  2px solid rgb(95, 19, 19);
+            padding: 2px;
+        }
+
+
+        .img2nd{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .custom-shadow {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05), 0 6px 6px rgba(0,0,0,0.1);
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-400 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-600 {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-zoom-in {
+            animation: zoomIn 0.3s ease-out forwards;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F8F5F1]">
+
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'jh-green': '#059669', /* A vibrant green */
+                    'jh-brown': '#8B541A', /* An earthy brown */
+                    'jh-beige': '#F8F5F1', /* A soft beige */
+                    'jh-orange': '#F97316', /* A vibrant orange */
+                }
+            }
+        }
+    }
+</script>
+
+<!-- Floating Chatbot Button -->
+<button id="chatbot-btn" class="fixed bottom-6 right-6 p-4 bg-jh-orange text-white rounded-full custom-shadow hover:scale-105 transition-transform z-50">
+    <i class="fas fa-comment-dots text-2xl"></i>
+</button>
+
+<!-- Navbar -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-80 backdrop-blur-md p-4 lg:p-6 custom-shadow transition-all duration-300">
+    <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="text-xl lg:text-2xl font-bold text-jh-green flex items-center gap-2">
+            <img class="img1st" src="https://i.pinimg.com/736x/90/dd/bc/90ddbc0f307bb82ab1bd05b8ddfc9304.jpg" alt="Jharkhand Spirit Logo" class="h-8 lg:h-10">
+            Jharkhand Spirit
+        </a>
+        <div class="hidden lg:flex items-center space-x-8">
+            <a href="#home" class="text-gray-700 font-medium hover:text-jh-orange transition-colors">Home</a>
+            <a href="#explore" class="text-gray-700 font-medium hover:text-jh-orange transition-colors">Explore Places</a>
+            <a href="#hidden-gems" class="text-gray-700 font-medium hover:text-jh-orange transition-colors">Hidden Gems</a>
+            <a href="#guides" class="text-gray-700 font-medium hover:text-jh-orange transition-colors">Hire Guide</a>
+            <a href="#planner" class="text-gray-700 font-medium hover:text-jh-orange transition-colors">Itinerary Planner</a>
+            <a href="#reviews" class="text-gray-700 font-medium hover:text-jh-orange transition-colors">Reviews</a>
+            <button class="px-5 py-2 bg-jh-orange text-white font-semibold rounded-full custom-shadow hover:bg-jh-brown transition-colors">Login / Sign Up</button>
+        </div>
+        <button id="mobile-menu-btn" class="lg:hidden text-gray-700 text-2xl">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Menu (Hidden by default) -->
+<div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-white p-6 transition-transform transform translate-x-full">
+    <div class="flex justify-between items-center mb-6">
+        <span class="text-xl font-bold text-jh-green">Menu</span>
+        <button id="close-menu-btn" class="text-gray-700 text-2xl"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="flex flex-col space-y-4">
+        <a href="#home" class="text-gray-700 font-medium py-2 border-b">Home</a>
+        <a href="#explore" class="text-gray-700 font-medium py-2 border-b">Explore Places</a>
+        <a href="#hidden-gems" class="text-gray-700 font-medium py-2 border-b">Hidden Gems</a>
+        <a href="#guides" class="text-gray-700 font-medium py-2 border-b">Hire Guide</a>
+        <a href="#planner" class="text-gray-700 font-medium py-2 border-b">Itinerary Planner</a>
+        <a href="#reviews" class="text-gray-700 font-medium py-2 border-b">Reviews</a>
+        <button class="w-full mt-4 px-5 py-2 bg-jh-orange text-white font-semibold rounded-full custom-shadow hover:bg-jh-brown">Login / Sign Up</button>
+    </div>
+</div>
+
+<main>
+
+<!-- Hero Section -->
+<section id="home" class="relative h-screen flex items-center justify-center text-white text-center overflow-hidden">
+     
+    
+    <div class="absolute inset-0 bg-black bg-opacity-50">
+        <img  class="img2nd" src="https://assets.simplotel.com/simplotel/image/upload/x_200,y_0,w_3200,h_2400,r_0,c_crop,q_80,fl_progressive/w_500,f_auto,c_fit/wedlock-greens-hotel-resorts/A_waterfall_cascading_down_to_a_waterbody_with_rock_and_nature_surrounding_it_fakwlk" alt="">
+    </div>
+    <div class="relative z-10 p-6 sm:p-10">
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 animate-fade-in-up text-gray-300">Discover Untold Stories of Jharkhand</h1>
+        <p class="text-lg sm:text-xl lg:text-2xl font-light mb-8 max-w-2xl mx-auto animate-fade-in-up delay-200">
+            Explore a land of rich tribal culture, mesmerizing waterfalls, and serene forests.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="#explore" class="px-8 py-3 bg-jh-orange text-white font-semibold rounded-full custom-shadow hover:bg-jh-brown transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-400">
+                Explore Now
+            </a>
+            <a href="#planner" class="px-8 py-3 bg-white text-jh-orange font-semibold rounded-full custom-shadow hover:bg-jh-beige transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-600">
+                Plan My Trip
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Alerts Section (Optional, can be a banner or a modal) -->
+<div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 shadow-sm mb-12 hidden">
+    <div class="flex items-center justify-center">
+        <i class="fas fa-exclamation-triangle mr-3"></i>
+        <p class="font-semibold">Real-time Alert:</p>
+        <p class="ml-2">Heavy rainfall expected in Ranchi district. Please check weather updates before planning your trip.</p>
+    </div>
+</div>
+
+<!-- Explore Places Section -->
+<section id="explore" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center text-jh-brown mb-4">Explore Places</h2>
+        <p class="text-center text-gray-600 mb-12">Click on the map or categories to discover amazing destinations.</p>
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="bg-gray-100 rounded-2xl p-6 custom-shadow relative">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEtWftsj3URBoDKx7kwh2hyZJ87cVl2M0pw&s" alt="Map of Jharkhand" class="rounded-xl w-full h-auto">
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-jh-beige rounded-2xl p-6 custom-shadow hover:scale-105 transition-transform cursor-pointer">
+                    <div class="w-12 h-12 bg-jh-orange text-white rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-jh-brown">Waterfalls</h3>
+                    <p class="text-gray-600">Discover mesmerizing cascades and serene spots.</p>
+                </div>
+                <div class="bg-jh-beige rounded-2xl p-6 custom-shadow hover:scale-105 transition-transform cursor-pointer">
+                    <div class="w-12 h-12 bg-jh-orange text-white rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-jh-brown">Forests & Wildlife</h3>
+                    <p class="text-gray-600">Venture into the lush green heart of Jharkhand.</p>
+                </div>
+                <div class="bg-jh-beige rounded-2xl p-6 custom-shadow hover:scale-105 transition-transform cursor-pointer">
+                    <div class="w-12 h-12 bg-jh-orange text-white rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-jh-brown">Tribal Culture</h3>
+                    <p class="text-gray-600">Experience the rich heritage and traditions.</p>
+                </div>
+                <div class="bg-jh-beige rounded-2xl p-6 custom-shadow hover:scale-105 transition-transform cursor-pointer">
+                    <div class="w-12 h-12 bg-jh-orange text-white rounded-full flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-jh-brown">Hill Stations</h3>
+                    <p class="text-gray-600">Enjoy the cool, panoramic views of the hills.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hidden Gems Section -->
+<section id="hidden-gems" class="py-16 bg-jh-beige">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center text-jh-brown mb-4">Hidden Gems</h2>
+        <p class="text-center text-gray-600 mb-12">Discover local secrets and off-the-beaten-path destinations.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl p-4 custom-shadow hover:scale-105 transition-transform">
+                <img src="https://cdn1.tripoto.com/media/filter/nl/img/2380291/Image/1698489734_eub3s7iu0aa0uda.jpg.webp" alt="Tadoba National Park" class="rounded-xl w-full h-48 object-cover mb-4">
+                <h3 class="font-bold text-xl text-jh-brown mb-2">Betla National Park</h3>
+                <p class="text-gray-600 text-sm">A serene and lesser-known wildlife sanctuary perfect for nature lovers and photographers.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 custom-shadow hover:scale-105 transition-transform">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQyN_aObo7jNOKXwMY401mAQzVkMQvZAxIZg&s" alt="Netarhat" class="rounded-xl w-full h-48 object-cover mb-4">
+                <h3 class="font-bold text-xl text-jh-brown mb-2">Netarhat</h3>
+                <p class="text-gray-600 text-sm">Known as the "Queen of Chotanagpur," this hill station offers stunning sunsets and sunrises.</p>
+            </div>
+            <div class="bg-white rounded-2xl p-4 custom-shadow hover:scale-105 transition-transform">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRahV90eI_7PWEe8Qrj-wXHZH0Q79WrM31Qtw&s" alt="Saranda Forest" class="rounded-xl w-full h-48 object-cover mb-4">
+                <h3 class="font-bold text-xl text-jh-brown mb-2">Saranda Forest</h3>
+                <p class="text-gray-600 text-sm">A dense forest with immense biodiversity and a perfect spot for trekking and bird watching.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hire a Guide Section -->
+<section id="guides" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center text-jh-brown mb-4">Hire a Local Guide</h2>
+        <p class="text-center text-gray-600 mb-12">Connect with knowledgeable local guides for an authentic experience.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-jh-beige rounded-2xl p-6 custom-shadow flex flex-col items-center text-center">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6lgwn1YvWp1Yazg6mTsUpPXDKgqwMFrdBcQ&s" alt="Guide Profile" class="rounded-full w-24 h-24 object-cover mb-4 border-4 border-jh-orange">
+                <h3 class="font-bold text-xl text-jh-brown">Rahul Sinha</h3>
+                <p class="text-gray-600">Certified Nature Guide</p>
+                <div class="flex items-center gap-2 text-sm text-gray-500 my-2">
+                    <i class="fas fa-language"></i>
+                    <span>Hindi, English, Santhali</span>
+                </div>
+                <button onclick="openGuideModal('Rahul Sinha')" class="mt-4 px-6 py-2 bg-jh-orange text-white font-semibold rounded-full hover:bg-jh-brown transition-colors">
+                    Hire Guide
+                </button>
+            </div>
+            <div class="bg-jh-beige rounded-2xl p-6 custom-shadow flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZW1wbG95ZWV8ZW58MHx8MHx8fDA%3D" alt="Guide Profile" class="rounded-full w-24 h-24 object-cover mb-4 border-4 border-jh-orange">
+                <h3 class="font-bold text-xl text-jh-brown">Priya Munda</h3>
+                <p class="text-gray-600">Cultural & Heritage Expert</p>
+                <div class="flex items-center gap-2 text-sm text-gray-500 my-2">
+                    <i class="fas fa-language"></i>
+                    <span>Hindi, English, Mundari</span>
+                </div>
+                <button onclick="openGuideModal('Priya Munda')" class="mt-4 px-6 py-2 bg-jh-orange text-white font-semibold rounded-full hover:bg-jh-brown transition-colors">
+                    Hire Guide
+                </button>
+            </div>
+            <div class="bg-jh-beige rounded-2xl p-6 custom-shadow flex flex-col items-center text-center">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZW1wbG95ZWV8ZW58MHx8MHx8fDA%3D" alt="Guide Profile" class="rounded-full w-24 h-24 object-cover mb-4 border-4 border-jh-orange">
+                <h3 class="font-bold text-xl text-jh-brown">Amit Kumar</h3>
+                <p class="text-gray-600">Adventure & Trekking Guide</p>
+                <div class="flex items-center gap-2 text-sm text-gray-500 my-2">
+                    <i class="fas fa-language"></i>
+                    <span>Hindi, English, Bengali</span>
+                </div>
+                <button onclick="openGuideModal('Amit Kumar')" class="mt-4 px-6 py-2 bg-jh-orange text-white font-semibold rounded-full hover:bg-jh-brown transition-colors">
+                    Hire Guide
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Itinerary Planner Section -->
+<section id="planner" class="py-16 bg-jh-beige">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-jh-brown mb-4">Smart Itinerary Planner</h2>
+            <p class="text-gray-600">Let us craft a personalized trip plan just for you.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 lg:p-12 custom-shadow max-w-2xl mx-auto">
+            <form id="itinerary-form" class="space-y-6">
+                <div>
+                    <label for="interests" class="block text-gray-700 font-medium mb-2">What are you interested in?</label>
+                    <select id="interests" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-jh-orange transition-colors">
+                        <option>Nature & Wildlife</option>
+                        <option>Culture & Heritage</option>
+                        <option>Adventure Sports</option>
+                        <option>Religious Sites</option>
+                        <option>All of the above</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="duration" class="block text-gray-700 font-medium mb-2">Trip Duration (days)</label>
+                    <input type="number" id="duration" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-jh-orange transition-colors" min="1" value="3">
+                </div>
+                <button type="submit" class="w-full py-3 bg-jh-orange text-white font-semibold rounded-full custom-shadow hover:bg-jh-brown transition-colors">
+                    Generate My Itinerary
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Homestays Section -->
+<section id="homestays" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center text-jh-brown mb-4">Experience Local Living</h2>
+        <p class="text-center text-gray-600 mb-12">Book a cozy homestay and live like a local.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-jh-beige rounded-2xl custom-shadow overflow-hidden">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv7UVVtUjAFSN-usbieYFhBtC2ltn8EgOHCA&s" alt="Homestay" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-jh-brown mb-2">The Tribal Hut</h3>
+                    <p class="text-gray-600 text-sm mb-4">A traditional mud house in the heart of a village, with a modern twist.</p>
+                    <div class="flex items-center justify-between text-jh-orange font-bold">
+                        <span>₹1500/night</span>
+                        <button class="px-4 py-2 bg-jh-orange text-white text-sm rounded-full hover:bg-jh-brown transition-colors">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-jh-beige rounded-2xl custom-shadow overflow-hidden">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/493603802.jpg?k=2973a7fcc3c3f53b529574ddebeb8b361d68c4462f0f8661fab3d7c005627141&o=&hp=1" alt="Homestay" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-jh-brown mb-2">Forestside Villa</h3>
+                    <p class="text-gray-600 text-sm mb-4">Wake up to the sound of birds in this serene villa located near a forest reserve.</p>
+                    <div class="flex items-center justify-between text-jh-orange font-bold">
+                        <span>₹2500/night</span>
+                        <button class="px-4 py-2 bg-jh-orange text-white text-sm rounded-full hover:bg-jh-brown transition-colors">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-jh-beige rounded-2xl custom-shadow overflow-hidden">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2Va1CDAWGWx-5HiCw2YktBexnmzP-eo-yIg&s" alt="Homestay" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-jh-brown mb-2">Hill View Retreat</h3>
+                    <p class="text-gray-600 text-sm mb-4">A charming cottage offering breathtaking views of the surrounding hills.</p>
+                    <div class="flex items-center justify-between text-jh-orange font-bold">
+                        <span>₹2000/night</span>
+                        <button class="px-4 py-2 bg-jh-orange text-white text-sm rounded-full hover:bg-jh-brown transition-colors">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews Section -->
+<section id="reviews" class="py-16 bg-jh-beige">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center text-jh-brown mb-4">What Our Travelers Say</h2>
+        <p class="text-center text-gray-600 mb-12">Real stories from people who explored Jharkhand with us.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl p-6 custom-shadow">
+                <div class="flex items-center mb-4">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/036/107/216/small/ai-generated-portrait-of-successful-and-happy-businesswoman-office-worker-smiling-and-looking-at-camera-with-crossed-arms-working-inside-modern-office-photo.jpg" alt="Avatar" class="rounded-full w-12 h-12 mr-4">
+                    <div>
+                        <p class="font-bold text-jh-brown">Anisha Singh</p>
+                        <p class="text-gray-500 text-sm">Pune, India</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed">"The Hidden Gems section led me to some incredible places I never knew existed. The guides were so knowledgeable and friendly. Truly an unforgettable experience!"</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 custom-shadow">
+                <div class="flex items-center mb-4">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/057/789/258/small/a-young-indian-man-in-a-suit-and-tie-standing-in-an-office-photo.jpg" alt="Avatar" class="rounded-full w-12 h-12 mr-4">
+                    <div>
+                        <p class="font-bold text-jh-brown">Samuel T.</p>
+                        <p class="text-gray-500 text-sm">New York, USA</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed">"The itinerary planner was a game-changer! It gave me a perfect 5-day plan based on my interests. Jharkhand's beauty is truly underrated."</p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 custom-shadow">
+                <div class="flex items-center mb-4">
+                    <img src="https://www.shutterstock.com/image-photo/confident-smiling-female-employee-260nw-339668693.jpg" alt="Avatar" class="rounded-full w-12 h-12 mr-4">
+                    <div>
+                        <p class="font-bold text-jh-brown">Maria L.</p>
+                        <p class="text-gray-500 text-sm">Berlin, Germany</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed">"I loved the focus on homestays and local culture. It was a refreshing change from typical tourist trips. The chatbot was super helpful for quick questions."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-jh-brown text-white py-12">
+    <div class="container mx-auto px-4 text-center">
+        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+                <ul>
+                    <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#explore" class="text-gray-300 hover:text-white transition-colors">Explore</a></li>
+                    <li><a href="#guides" class="text-gray-300 hover:text-white transition-colors">Hire Guide</a></li>
+                    <li><a href="#planner" class="text-gray-300 hover:text-white transition-colors">Planner</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Contact Us</h4>
+                <p class="text-gray-300">Email: info@jharkhandspirit.gov.in</p>
+                <p class="text-gray-300">Phone: +91 98765 43210</p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Follow Us</h4>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-2xl text-gray-300 hover:text-white transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-2xl text-gray-300 hover:text-white transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-2xl text-gray-300 hover:text-white transition-colors"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg mb-4">About This Project</h4>
+                <p class="text-gray-300 text-sm">
+                    This landing page was designed as a project for Smart India Hackathon.
+                </p>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 pt-8 text-sm text-gray-400">
+            &copy; 2024 Jharkhand Spirit. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Modals -->
+
+<!-- Chatbot Modal -->
+<div id="chatbot-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-md custom-shadow p-6 relative animate-zoom-in">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-jh-brown">Jharkhand Spirit Chatbot</h3>
+            <button onclick="closeChatbotModal()" class="text-gray-500 hover:text-gray-800 text-2xl"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="h-64 overflow-y-auto no-scrollbar border rounded-lg p-4 mb-4 bg-gray-50">
+            <div class="text-sm text-gray-600">
+                <p class="mb-2">Hello! How can I help you today?</p>
+                <p class="mb-2">I can help with:</p>
+                <ul class="list-disc list-inside">
+                    <li>Trip Planning</li>
+                    <li>Place Recommendations</li>
+                    <li>Guide Information</li>
+                    <li>Real-time Alerts</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex">
+            <input type="text" placeholder="Type your message..." class="flex-grow p-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-jh-orange">
+            <button class="px-4 py-3 bg-jh-orange text-white rounded-r-lg hover:bg-jh-brown transition-colors"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<!-- Guide Modal -->
+<div id="guide-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-md custom-shadow p-6 relative animate-zoom-in">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold text-jh-brown">Hire <span id="guide-name-modal"></span></h3>
+            <button onclick="closeGuideModal()" class="text-gray-500 hover:text-gray-800 text-2xl"><i class="fas fa-times"></i></button>
+        </div>
+        <p class="text-gray-600 mb-4">Fill out the form below to book your guide. You will be redirected to a secure payment gateway.</p>
+        <form id="guide-booking-form" class="space-y-4">
+            <div>
+                <label for="booking-date" class="block text-gray-700 font-medium mb-1">Booking Date</label>
+                <input type="date" id="booking-date" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-jh-orange" required>
+            </div>
+            <div>
+                <label for="booking-days" class="block text-gray-700 font-medium mb-1">Number of Days</label>
+                <input type="number" id="booking-days" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-jh-orange" min="1" required>
+            </div>
+            <button type="submit" class="w-full py-3 bg-jh-orange text-white font-semibold rounded-full hover:bg-jh-brown transition-colors">
+                Proceed to Payment
+            </button>
+        </form>
+    </div>
+</div>
+<!-- Itinerary Modal -->
+<div id="itinerary-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-lg custom-shadow p-6 relative animate-zoom-in">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-bold text-jh-green">Your Custom Itinerary</h3>
+            <button onclick="closeItineraryModal()" class="text-gray-500 hover:text-gray-800 text-2xl"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="itinerary-content" class="h-96 overflow-y-auto no-scrollbar text-gray-700">
+            <!-- Content will be injected here by JS -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // Navbar and Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+        setTimeout(() => mobileMenu.classList.remove('translate-x-full'), 10);
+    });
+
+    closeMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+    });
+
+    document.querySelectorAll('#mobile-menu a').forEach(item => {
+        item.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+            setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+        });
+    });
+
+    // Chatbot Modal
+    const chatbotBtn = document.getElementById('chatbot-btn');
+    const chatbotModal = document.getElementById('chatbot-modal');
+
+    chatbotBtn.addEventListener('click', () => {
+        chatbotModal.classList.remove('hidden');
+    });
+
+    function closeChatbotModal() {
+        chatbotModal.classList.add('hidden');
+    }
+
+    // Guide Modal
+    const guideModal = document.getElementById('guide-modal');
+    const guideNameModal = document.getElementById('guide-name-modal');
+    const guideBookingForm = document.getElementById('guide-booking-form');
+
+    function openGuideModal(guideName) {
+        guideNameModal.textContent = guideName;
+        guideModal.classList.remove('hidden');
+    }
+
+    function closeGuideModal() {
+        guideModal.classList.add('hidden');
+    }
+
+    guideBookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Simulate a booking process
+        console.log("Booking for guide:", guideNameModal.textContent);
+        console.log("Date:", document.getElementById('booking-date').value);
+        console.log("Days:", document.getElementById('booking-days').value);
+        alert("Booking successful! A confirmation email has been sent to your inbox. Proceeding to a secure payment gateway...");
+        closeGuideModal();
+    });
+
+    // Itinerary Planner Modal
+    const itineraryForm = document.getElementById('itinerary-form');
+    const itineraryModal = document.getElementById('itinerary-modal');
+    const itineraryContent = document.getElementById('itinerary-content');
+
+    itineraryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const interests = document.getElementById('interests').value;
+        const duration = document.getElementById('duration').value;
+
+        const mockItinerary = `
+            <div class="space-y-6">
+                <div class="p-4 bg-jh-beige rounded-xl custom-shadow">
+                    <h4 class="font-bold text-lg text-jh-brown mb-2">Day 1: Arrival & Local Exploration</h4>
+                    <p class="text-gray-700 text-sm">Arrive in Ranchi, the capital. Check into a local homestay. In the afternoon, explore the Tribal Research Institute and Museum to understand the local culture. Enjoy a traditional dinner at a local restaurant.</p>
+                </div>
+                <div class="p-4 bg-jh-beige rounded-xl custom-shadow">
+                    <h4 class="font-bold text-lg text-jh-brown mb-2">Day 2: Waterfall Wonders</h4>
+                    <p class="text-gray-700 text-sm">Start your day with a visit to the breathtaking Hundru Falls. After a packed lunch, head to Jonha Falls, also known as Gautamdhara. In the evening, relax by a serene lakeside.</p>
+                </div>
+                <div class="p-4 bg-jh-beige rounded-xl custom-shadow">
+                    <h4 class="font-bold text-lg text-jh-brown mb-2">Day 3: Nature and Adventure</h4>
+                    <p class="text-gray-700 text-sm">Embark on a morning trek in the Netarhat region, known for its scenic beauty. Enjoy a panoramic view from the sunrise point. The rest of the day can be spent exploring the local flora and fauna before heading back.</p>
+                </div>
+                <div class="p-4 bg-jh-beige rounded-xl custom-shadow">
+                    <h4 class="font-bold text-lg text-jh-brown mb-2">Based on your interests: ${interests}</h4>
+                    <p class="text-gray-700 text-sm">This is a sample itinerary for your ${duration}-day trip. The full itinerary will be sent to your email after you log in.</p>
+                </div>
+            </div>
+        `;
+        itineraryContent.innerHTML = mockItinerary;
+        itineraryModal.classList.remove('hidden');
+    });
+
+    function closeItineraryModal() {
+        itineraryModal.classList.add('hidden');
+    }
+</script>
+
+</body>
+</html>
